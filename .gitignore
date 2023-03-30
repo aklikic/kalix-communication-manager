@@ -1,0 +1,5 @@
+/.idea/
+communication-manager.iml
+/target/
+dependency-reduced-pom.xml
+docker/maven/*.jar

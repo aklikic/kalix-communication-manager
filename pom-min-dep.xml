@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>3.0.4</version>
+    <relativePath/> 
+  </parent>
+  <groupId>com.wipro</groupId>
+  <artifactId>communication-manager</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>communication-manager</name>
+  <properties>
+
+    <maven.build.timestamp.format>yyyyMMddHHmmss</maven.build.timestamp.format>
+    <mainClass>com.wipro.communicationmanager.Main</mainClass>
+
+    <jdk.target>17</jdk.target>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+    <kalix-sdk.version>1.2.0</kalix-sdk.version>
+  </properties>
+
+  <build>
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+      </resource>
+    </resources>
+
+    <extensions>
+      <extension>
+        <groupId>kr.motd.maven</groupId>
+        <artifactId>os-maven-plugin</artifactId>
+        <version>1.7.0</version>
+      </extension>
+    </extensions>
+
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-shade-plugin</artifactId>
+          <executions>
+            <execution>
+              <phase>package</phase>
+              <goals>
+                <goal>shade</goal>
+              </goals>
+              <configuration>
+                <transformers combine.children="append">
+                  <transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
+                    <resource>reference.conf</resource>
+                  </transformer>
+                </transformers>
+              </configuration>
+            </execution>
+          </executions>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.8.1</version>
+        <configuration>
+          <source>${jdk.target}</source>
+          <target>${jdk.target}</target>
+          <compilerArgs>
+            <arg>-Xlint:deprecation</arg>
+            <arg>-parameters</arg>
+          </compilerArgs>
+        </configuration>
+      </plugin>
+
+      <plugin>
+       <groupId>org.springframework.boot</groupId>
+       <artifactId>spring-boot-maven-plugin</artifactId>
+        <configuration>
+            <systemPropertyVariables>
+                <logging.config>src/main/resources/logback-dev-mode.xml</logging.config>
+                <kalix.user-function-interface>0.0.0.0</kalix.user-function-interface>
+            </systemPropertyVariables>
+          </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+  <dependencies>
+    <dependency>
+      <groupId>io.kalix</groupId>
+      <artifactId>kalix-spring-boot-starter</artifactId>
+      <version>${kalix-sdk.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.kalix</groupId>
+      <artifactId>kalix-spring-boot-starter-test</artifactId>
+      <version>${kalix-sdk.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-api</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter</artifactId>
+      <scope>test</scope>
+    </dependency>
+    
+  </dependencies>
+</project>
