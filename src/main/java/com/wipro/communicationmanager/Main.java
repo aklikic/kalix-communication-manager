@@ -18,6 +18,7 @@ public class Main {
 
   public static void main(String[] args) {
     logger.info("Starting Kalix Application");
+    logger.info("proxy-host:{}",System.getProperty("kalix.proxy.internal-proxy-hostname"));
     SpringApplication.run(Main.class, args);
   }
 }

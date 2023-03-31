@@ -38,7 +38,11 @@ public class ApiControllerAction extends Action {
                              .thenApply(m -> Model.ChannelMessage.push(request.userId(), m));
         };
         var publish = message.thenCompose(m -> client.post("/internal/api/publish",m, Model.ChannelMessage.class).execute())
-                             .thenApply(publishedMessage -> RESPONSE_OK).exceptionally(Throwable::getMessage);
+                             .thenApply(publishedMessage -> RESPONSE_OK)
+                             .exceptionally(e -> {
+                                 logger.error("send error: {}",e);
+                                 return e.getMessage();
+                             });
         return effects().asyncReply(publish);
     }
 
