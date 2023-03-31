@@ -1,7 +1,8 @@
 # Communication manager Kalix project
-Instructions how to develop and run Kalix in local environment without requirements of Kalix platform.<br>
-Kalix platform based deployment and run is crucial for production based run where high availability and resilience are mandatory and what local environment does not provide.<br>
-Two options available based on developer's machine docker engine availability:
+Instructions how to develop and run services in local Kalix sandbox.<br>
+Local Kalix sandbox main purpose is zero friction development and testing of Kalix services.<br> 
+Kalix platform is then used and a runtime environment with high availability and resiliencethat local Kalix sandbox does not provide.<br>
+Kalix local sandbox can be deployed in two options based on availability of docker engine on developer's machine:
 1. Developer's machine with available docker engine<br> 
 Allows full Kalix developer experience with very fast turnover.<br>
 Covers:
