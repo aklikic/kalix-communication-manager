@@ -32,7 +32,7 @@ docker-compose -f docker-compose-kafka.yaml up
 2. Create Kafka topics <br>
 3. [Open Kafka UI](http://localhost:8081/)
 4. Create channel topic: `channel-topic` (number of partitions: 2, Min Sync replicas: 1, Replication factor: 1, Time to retain data: 600000)
-
+`NOTE:` For using external Kafka no need to run this. It is only required to update `bootstrap.servers` in `local/local.kafka.properties`. It is important that `channel-topic` topic is created prior to starting. 
 ## pom.xml setup
 Copy `pom-full-dep.xml` to `pom.xml`
 ## Run Kalix locally
@@ -99,7 +99,7 @@ docker-compose -f docker-compose-kafka.yaml up
 2. Create Kafka topics <br>
 3. [Open Kafka UI](http://setme:8081/) Note: Change the URL `hostname` instead of `setme`
 4. Create channel topic: `channel-topic` (number of partitions: 2, Min Sync replicas: 1, Replication factor: 1, Time to retain data: 600000)
-
+`NOTE:` For using external Kafka no need to run this. It is only required to update `bootstrap.servers` in `docker/local.kafka.properties`. It is important that `channel-topic` topic is created prior to starting.
 ## Build Kalix SDK project docker image
 1. Build Kalix SDK project docker image:
 ```
